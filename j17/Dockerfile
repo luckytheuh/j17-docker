@@ -4,23 +4,9 @@ LABEL   author="Torsten Widmann" maintainer="info@goover.de"
 LABEL   org.opencontainers.image.source="https://github.com/gOOvER/own-pterodactyl-images"
 LABEL   org.opencontainers.image.licenses=MIT
 
-RUN 		    apt update -y \
-				&& apt -y upgrade
+RUN  apt update -y && apt -y upgrade
 
-RUN  			apt install -y \
-					ca-certificates \
-					curl \
-					font-manager \
-					fontconfig \
-          ffmpeg \
-					git \
-					iproute2 \
-					ipset \
-					openssl \
-					sqlite3 \
-					tar \
-					tzdata \
-					libfreetype6
+RUN  apt install -y ca-certificates curl font-manager fontconfig ffmpeg git iproute2 ipset openssl sqlite3 tar tzdata libfreetype6
 
 ## configure locale
 RUN     update-locale lang=en_US.UTF-8 \
@@ -32,6 +18,6 @@ USER    container
 ENV     USER=container HOME=/home/container
 WORKDIR /home/container
 
-COPY        ./../entrypoint.sh /entrypoint.sh
+# COPY        ./../entrypoint.sh /entrypoint.sh
 ENTRYPOINT  ["sh", "/entrypoint.sh"]
 CMD         [ "/bin/bash", "/entrypoint.sh" ]

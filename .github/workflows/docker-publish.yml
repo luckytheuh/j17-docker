@@ -74,6 +74,17 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: cosign-installer
+        # You may pin to the exact commit or the version.
+        # uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19
+        uses: sigstore/cosign-installer@v3.1.2
+        with:
+          # cosign release version to be installed
+          cosign-release: v3.1.2
+          # Where to install the cosign binary
+          install-dir: $HOME/.cosign
+          # set to true if install-dir location requires sudo privs
+          use-sudo: false
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish

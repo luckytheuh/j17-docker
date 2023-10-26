@@ -6,7 +6,7 @@ LABEL   org.opencontainers.image.licenses=MIT
 
 RUN  apt update -y && apt -y upgrade
 RUN  apt install -y tesseract-ocr tesseract-ocr-data-eng ca-certificates curl font-manager fontconfig ffmpeg git iproute2 ipset openssl sqlite3 tar tzdata libfreetype6
-RUN  update-locale lang=en_US.UTF-8 && dpkg-reconfigure --frontend noninteractive locales
+RUN  update-locale lang=en_US.UTF-8 && dpkg-reconfigure --frontend noninteractive locales && ldconfig
 RUN  useradd -m -d /home/container -s /bin/bash container
 
 USER container
